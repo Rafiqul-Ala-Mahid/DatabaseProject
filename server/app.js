@@ -36,7 +36,7 @@ app.get("/getAll", (request, response) => {
 //update
 app.patch("/update", (request, response) => {
   const { id, name } = request.body;
-  console.log(id);
+  ///console.log(id);
   const db = new dbService();
   const result = db.updateNameById(id, name);
   result
@@ -47,7 +47,7 @@ app.patch("/update", (request, response) => {
 //delete
 app.delete("/delete/:id", (request, response) => {
   const { id } = request.params;
-  console.log(id);
+  // console.log(id);
 
   const db = new dbService();
 

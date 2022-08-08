@@ -70,7 +70,7 @@ class DbService {
 
         connection.query(query, [id], (err, result) => {
           if (err) reject(new Error(err.message));
-          console.log(result);
+          // console.log(result);
           resolve(result.affectedRows);
         });
       });
@@ -83,13 +83,13 @@ class DbService {
   async updateNameById(id, name) {
     try {
       var id = parseInt(id, 10);
-      console.log(id);
+      // console.log(id);
       const response = await new Promise((resolve, reject) => {
         const query = "UPDATE names SET name=? WHERE id=?";
 
         connection.query(query, [name, id], (err, result) => {
           if (err) reject(new Error(err.message));
-          console.log(result);
+          // console.log(result);
           resolve(result);
         });
       });
