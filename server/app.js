@@ -13,10 +13,9 @@ app.use(express.urlencoded({ extended: false }));
 
 //create
 app.post("/insert", (request, response) => {
-  const { name } = request.body;
+  const { name,bookAuthor, publicationName, categoryName, availableName } = request.body;
   const db = new dbService();
-
-  const result = db.insertNewName(name);
+  const result = db.insertNewName(name,bookAuthor,publicationName,categoryName, availableName);
 
   result
     .then((data) => response.json({ data: data }))
@@ -35,10 +34,10 @@ app.get("/getAll", (request, response) => {
 
 //update
 app.patch("/update", (request, response) => {
-  const { id, name } = request.body;
+  const { id, available } = request.body;
   ///console.log(id);
   const db = new dbService();
-  const result = db.updateNameById(id, name);
+  const result = db.updateNameById(id, available);
   result
     .then((data) => response.json({ success: true }))
     .catch((err) => console.log(err));

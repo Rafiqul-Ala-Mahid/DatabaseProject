@@ -5,23 +5,52 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="stylesheet.css" />
-    <title>Crud App</title>
+    <title>Library Management System</title>
+    <link rel="shortcut icon" href="LibraryManagement.jpg" type="image/x-icon" >
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="server/index.js"></script>
   </head>
   <body>
+
+    <div class="">
+      <nav class=" navbar navbar-expand-lg navbar-light bg-dark " style="height: 150px;">
+        <div class="container">
+          <a class="navbar-brand text-warning" href="#">Online Library</a>
+          <div class="d-flex flex-row">
+            <p class="text-light px-3">Book List</p>
+            <p class="text-light">Logout</p>
+          </div>
+        </div>
+      </nav>
+    </div>
     <main>
-      <label class="bg">Name:</label>
-      <input type="text" id="name-input" />
-      <button id="add-name-btn">Add Name</button>
-      <br /><br /><br />
+      <label class="bg text-dark">Book-Information</label>
+      <div class="first">
+        <input type="text" class="input" id="name-input" placeholder="enter book name" />
+        <input type="text" class="input" id="author-name" placeholder="enter author's name" />
+        <input type="text" class="input" id="publication-name" placeholder="enter publication name" />
+        <input type="text" class="input" id="category-name" placeholder="enter category" />
+        <input type="text" class="input" id="available-name" placeholder="enter the remaining number" />
+        <br /><br/>
+      </div>
       <div>
-        <input placeholder="search by name" id="search-input" />
-        <button id="search-btn">Search</button>
+        <button class="button btn btn-secondary" id="add-name-btn">Add Name</button>
+        <br />
+        <br /> <br />
+      </div>
+      <div>
+        <input placeholder="search by name" class="input" id="search-input" />
+        <button class="button btn btn-secondary" id="search-btn">Search</button>
       </div>
       <table id="table">
         <thead>
           <th>Book ID</th>
           <th>Book Name</th>
+          <th>Writer Name</th>
+          <th>Publications</th>
+          <th>Categories</th>
+          <th>Available</th>
           <th>Date Added</th>
           <th>Delete</th>
           <th>Edit</th>
@@ -29,11 +58,11 @@
         <tbody></tbody>
       </table>
       <section hidden id="update-row">
-        <label class="bg">Book-Name:</label>
-        <input type="text" id="update-name-input" />
-        <button id="update-row-btn">Update</button>
+        <input type="text" class="input" id="update-name-input" placeholder="update available book number" />
+        <button class="button btn btn-secondary" id="update-row-btn">Update</button>
       </section>
     </main>
-    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   </body>
 </html>

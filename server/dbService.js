@@ -15,7 +15,7 @@ connection.connect((err) => {
    if (err) {
      console.log(err.message);
    }
-  console.log("db" + connection.state);
+  console.log("db " + connection.state);
   
  });
 
@@ -26,7 +26,7 @@ class DbService {
   async getAllData() {
     try {
       const response = await new Promise((resolve, reject) => {
-        const query = "SELECT * FROM names;";
+        const query = "SELECT * FROM books;";
         connection.query(query, (err, results) => {
           if (err) reject(new Error(err.message));
           resolve(results);
@@ -39,23 +39,28 @@ class DbService {
     }
   }
 
-  async insertNewName(name) {
+  async insertNewName(name, book_author,publication_name,category,available_book) {
     try {
+      //console.log(publication_name)
       const dateAdded = new Date();
       const insertId = await new Promise((resolve, reject) => {
-        const query = "INSERT INTO names (name,date_added) VALUES(?,?); ";
+        const query = "INSERT INTO books (name,book_author,publication_name,category,available_book,date_added) VALUES(?,?,?,?,?,?); ";
 
-        connection.query(query, [name, dateAdded], (err, result) => {
+        connection.query(query, [name, book_author, publication_name,category,available_book,dateAdded], (err, result) => {
           if (err) {
             reject(new Error(err.message));
           }
           //console.log("insert", result.insertId);
-          resolve(result.insertId);
+          resolve(result);
         });
       });
       return {
         id: insertId,
         name: name,
+        book_author: book_author,
+        publication_name: publication_name,
+        category: category,
+        available_book: available_book,
         dateAdded: dateAdded,
       };
     } catch (error) {
@@ -66,7 +71,7 @@ class DbService {
     try {
       id = parseInt(id, 10);
       const response = await new Promise((resolve, reject) => {
-        const query = "DELETE FROM names WHERE id=?";
+        const query = "DELETE FROM books WHERE id=?";
 
         connection.query(query, [id], (err, result) => {
           if (err) reject(new Error(err.message));
@@ -80,14 +85,14 @@ class DbService {
       return false;
     }
   }
-  async updateNameById(id, name) {
+  async updateNameById(id, available_book) {
     try {
       var id = parseInt(id, 10);
       // console.log(id);
       const response = await new Promise((resolve, reject) => {
-        const query = "UPDATE names SET name=? WHERE id=?";
+        const query = "UPDATE books SET available_book=? WHERE id=?";
 
-        connection.query(query, [name, id], (err, result) => {
+        connection.query(query, [available_book, id], (err, result) => {
           if (err) reject(new Error(err.message));
           // console.log(result);
           resolve(result);
@@ -99,10 +104,12 @@ class DbService {
       return false;
     }
   }
+
+  
   async searchByName(name) {
     try {
       const response = await new Promise((resolve, reject) => {
-        const query = "SELECT * FROM names WHERE name=?;";
+        const query = "SELECT * FROM books WHERE name=?;";
         connection.query(query, name, (err, results) => {
           if (err) reject(new Error(err.message));
           resolve(results);

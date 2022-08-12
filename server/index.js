@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   updateBtn.onclick = function () {
-    const updateNameInput = document.querySelector("#update-name-input");
+    const updateAvailable = document.querySelector("#update-name-input");
     const Id = document.querySelector("#update-row-btn").dataset.id;
 
     fetch("http://localhost:5000/update", {
@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       body: JSON.stringify({
         id: Id,
-        name: updateNameInput.value,
+        available: updateAvailable.value,
       }),
     })
       .then((response) => response.json())
@@ -74,16 +74,34 @@ document.addEventListener("DOMContentLoaded", function () {
   const addBtn = document.querySelector("#add-name-btn");
 
   addBtn.onclick = function () {
+    console.log("clickked")
     const nameInput = document.querySelector("#name-input");
-    const name = nameInput.value;
+    const name = nameInput.value; 
     nameInput.value = "";
+
+    const bookAuthor = document.querySelector("#author-name");
+    const book = bookAuthor.value;
+    bookAuthor.value = "";
+
+    const publicationName = document.querySelector("#publication-name");
+    const pub = publicationName.value;
+    publicationName.value = "";
+
+    const categoryName = document.querySelector("#category-name");
+    const category = categoryName.value;
+    categoryName.value = "";
+
+    const availableName = document.querySelector("#available-name");
+    const available = availableName.value;
+    availableName.value = "";
+
 
     fetch("http://localhost:5000/insert", {
       headers: {
         "Content-type": "application/json",
       },
       method: "POST",
-      body: JSON.stringify({ name: name }),
+      body: JSON.stringify({ name: name,bookAuthor:book, publicationName: pub,categoryName:category,availableName:available }),
     })
       .then((response) => response.json())
       .then((data) => insertRowIntoTable(data["data"]))
@@ -130,16 +148,20 @@ document.addEventListener("DOMContentLoaded", function () {
     const table = document.querySelector("table tbody");
 
     if (data.length === 0) {
-      table.innerHTML = "<tr><td class='no-data' colspan='5'>No Data</td></tr>";
+      table.innerHTML = "<tr><td class='no-data' colspan='9'>No Data</td></tr>";
       return;
     }
 
     let tableHtml = "";
 
-    data.forEach(function ({ id, name, date_added }) {
+    data.forEach(function ({ id, name,book_author,publication_name,category,available_book,date_added }) {
       tableHtml += "<tr>";
       tableHtml += `<td>${id}</td>`;
       tableHtml += `<td>${name}</td>`;
+      tableHtml += `<td>${book_author}</td>`;
+      tableHtml += `<td>${publication_name}</td>`;
+      tableHtml += `<td>${category}</td>`;
+      tableHtml += `<td>${available_book}</td>`;
       tableHtml += `<td>${new Date(date_added).toLocaleString()}</td>`;
       tableHtml += `<td><button class="delete-row-btn" data-id=${id}>Delete</td>`;
       tableHtml += `<td><button class="edit-row-btn" data-id=${id}>Edit</td>`;

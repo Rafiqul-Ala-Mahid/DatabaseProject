@@ -1,20 +1,50 @@
 main {
-  width: 50%;
-  margin: 50px auto;
   text-align: center;
 }
 
 body {
-  background-image: url("LibraryManagement.jpg");
+  /* background-image: url("Library.jpg");
+  background-repeat: no-repeat; */
+  background-color: aliceblue;
+  margin: 0%;
+  padding: 0%;
+}
+.first{
+  width: 82%;
+  display: flex;
+  margin-top: 3%;
+  margin-left: 9%;
+  margin-right: 9%;
 }
 .bg{
-  background-color: white;
-  padding-left: 1%;
-  padding-right: 1%;
+  background-color: rgba(214, 206, 206, 0.982);
+  margin-top: 3%;
+  font-size: 20px;
+  padding: 2%;
+}
+.input{
+  padding:1.5%;
+  width: 25%;
+  height: 10px;
+  margin: 1%;
+  border: 2px solid gray;
+}
+::placeholder{
+  font-size: 15px;
+  text-align: center;
+}
+.button{
+  padding: 0;
+}
+#search-input{
+  height: 10px;
+}
+#search-btn{
+  padding-bottom: 0.4%;
 }
 table {
   margin: 50px auto;
-  background-color: rgb(186, 175, 212);
+  background-color: rgb(227, 225, 232);
 }
 
 table,
